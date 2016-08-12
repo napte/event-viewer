@@ -3,10 +3,10 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
-	
-  <display-name>Archetype Created Web Application</display-name>
-  
-  	<welcome-file-list>
+
+	<display-name>Archetype Created Web Application</display-name>
+
+	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
@@ -14,19 +14,39 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
- 
+
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>
+         org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+      </param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>com.naptex.evtsvc.SpringConfig</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
 	<servlet>
-		<servlet-name>rest</servlet-name>
-		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<servlet-name>rest-servlet</servlet-name>
+		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
 			<param-value>com.naptex.evtsvc.rest</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
- 
+
 	<servlet-mapping>
-		<servlet-name>rest</servlet-name>
+		<servlet-name>rest-servlet</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 </web-app>
