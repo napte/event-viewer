@@ -2,6 +2,8 @@ package com.naptex.evtsvc.model;
 
 import java.util.Date;
 
+import com.google.gson.Gson;
+
 public class Event
 {
 	private String message;
@@ -59,6 +61,12 @@ public class Event
 	public void setDuration(long duration)
 	{
 		this.duration = duration;
+	}
+
+	public String toJson()
+	{
+		Gson gson = new Gson();
+		return gson.toJson(this);
 	}
 
 	@Override
