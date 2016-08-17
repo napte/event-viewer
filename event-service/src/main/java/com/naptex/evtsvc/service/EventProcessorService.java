@@ -1,5 +1,7 @@
 package com.naptex.evtsvc.service;
 
+import java.util.Iterator;
+
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
@@ -25,5 +27,17 @@ public class EventProcessorService
 	{
 		logger.debug("Publish " + event);
 		eventStore.storeEvent(event);
+	}
+
+	public Iterator<Event> getAllEvents()
+	{
+		logger.debug("Get all events");
+		return eventStore.getEvents();
+	}
+
+	public Event getEvent(String id)
+	{
+		logger.debug("Get event with id = " + id);
+		return eventStore.getEvent(id);
 	}
 }

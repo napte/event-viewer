@@ -25,4 +25,11 @@ public class DummyIEventStore implements IEventStore
 		return null;
 	}
 
+	@Override
+	public Event getEvent(String id)
+	{
+		logger.info("Get event with id " + id);
+		return null;
+	}
+
 }

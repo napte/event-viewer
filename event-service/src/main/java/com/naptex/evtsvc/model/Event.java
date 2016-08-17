@@ -69,6 +69,12 @@ public class Event
 		return gson.toJson(this);
 	}
 
+	public static Event fromJson(String json)
+	{
+		Gson gson = new Gson();
+		return gson.fromJson(json, Event.class);
+	}
+
 	@Override
 	public String toString()
 	{

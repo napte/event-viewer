@@ -9,4 +9,6 @@ public interface IEventStore
 	public void storeEvent(Event event);
 
 	public Iterator<Event> getEvents();
+
+	public Event getEvent(String id);
 }
