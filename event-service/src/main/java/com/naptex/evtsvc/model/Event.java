@@ -6,12 +6,23 @@ import com.google.gson.Gson;
 
 public class Event
 {
+	private String id;
 	private String message;
 	private Level level;
 	private Date time;
 
 	private String origin;
 	private long duration;
+
+	public String getId()
+	{
+		return id;
+	}
+
+	public void setId(String id)
+	{
+		this.id = id;
+	}
 
 	public String getMessage()
 	{
@@ -69,7 +80,15 @@ public class Event
 		return gson.toJson(this);
 	}
 
-	public static Event fromJson(String json)
+	/*
+	 * ====== DO NOT rename this method ======
+	 * 
+	 * Method must be named as "fromString" so that the JSON POST entities of
+	 * type Event can be processed automatically by REST API.
+	 * 
+	 * An example of bad coupling between a model class and REST API.
+	 */
+	public static Event fromString(String json)
 	{
 		Gson gson = new Gson();
 		return gson.fromJson(json, Event.class);

@@ -6,7 +6,7 @@ import com.naptex.evtsvc.model.Event;
 
 public interface IEventStore
 {
-	public void storeEvent(Event event);
+	public String storeEvent(Event event);
 
 	public Iterator<Event> getEvents();
 

@@ -23,10 +23,10 @@ public class EventProcessorService
 		this.eventStore = eventStore;
 	}
 
-	public void publishEvent(Event event)
+	public String publishEvent(Event event)
 	{
 		logger.debug("Publish " + event);
-		eventStore.storeEvent(event);
+		return eventStore.storeEvent(event);
 	}
 
 	public Iterator<Event> getAllEvents()

@@ -13,9 +13,10 @@ public class DummyIEventStore implements IEventStore
 	final static Logger logger = Logger.getLogger(DummyIEventStore.class);
 
 	@Override
-	public void storeEvent(Event event)
+	public String storeEvent(Event event)
 	{
 		logger.info(event);
+		return null;
 	}
 
 	@Override

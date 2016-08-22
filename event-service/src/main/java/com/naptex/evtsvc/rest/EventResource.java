@@ -59,18 +59,22 @@ public class EventResource
 	{
 		logger.info("Get event with id " + id);
 
-		Event evt = service.getEvent(id);
-		String json = jsonFormatter.getJson(evt);
+		Event event = service.getEvent(id);
+		String json = jsonFormatter.getJson(event);
 
 		return Response.status(Status.OK).entity(json).build();
 	}
 
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response publishEvent()
+	public Response publishEvent(Event event) throws IOException
 	{
-		// TODO : Accept Event json and publish event
-		return null;
+		logger.info("PUT event " + event.toJson());
+		String id = service.publishEvent(event);
+		event.setId(id);
+
+		String json = jsonFormatter.getJson(event);
+		return Response.status(Status.OK).entity(json).build();
 	}
 
 }

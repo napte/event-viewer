@@ -48,14 +48,16 @@ public class ElasticSearchEventStore implements IEventStore
 		this.client = client;
 	}
 
-	public void storeEvent(Event event)
+	public String storeEvent(Event event)
 	{
 		logger.info("Store event in Elastic Search");
 		String json = event.toJson();
 		IndexResponse response = client
 				.prepareIndex(INDEX_EVENT_SVC, TYPE_EVENT).setSource(json)
 				.get();
-		logger.info(response.getId());
+		String eventId = response.getId();
+		logger.info("Event id : " + eventId);
+		return eventId;
 	}
 
 	public Iterator<Event> getEvents()
@@ -70,7 +72,8 @@ public class ElasticSearchEventStore implements IEventStore
 		for (SearchHit hit : response.getHits())
 		{
 			String eventJson = hit.getSourceAsString();
-			Event evt = Event.fromJson(eventJson);
+			Event evt = Event.fromString(eventJson);
+			evt.setId(hit.getId());
 			events.add(evt);
 		}
 
@@ -86,7 +89,9 @@ public class ElasticSearchEventStore implements IEventStore
 				.setType(TYPE_EVENT).setId(id).setOperationThreaded(false)
 				.get();
 		String eventJson = response.getSourceAsString();
-		return Event.fromJson(eventJson);
+		Event evt = Event.fromString(eventJson);
+		evt.setId(response.getId());
+		return evt;
 	}
 
 	public static void main(String[] args)

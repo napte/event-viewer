@@ -50,6 +50,12 @@
 			<version>${jackson-2-version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>${jackson-2-version}</version>
+		</dependency>
+
 
 		<!-- ElasticSearch -->
 		<dependency>
@@ -66,10 +72,17 @@
 		</dependency>
 
 
+		<!-- Jersey -->
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-server</artifactId>
 			<version>1.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>1.17.1</version>
 		</dependency>
 
 		<!-- Spring framework dependencies -->
